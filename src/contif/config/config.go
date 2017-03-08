@@ -1,7 +1,7 @@
 package config
 
 import (
-	"assert"
+	"contif/assert"
 	"flag"
 
 	"gopkg.in/fzerorubigd/onion.v2"
@@ -18,12 +18,11 @@ const (
 	appName      = "Netchecker"
 )
 
-
 var Config AppConfig
 var o = onion.New()
 
 type AppConfig struct {
-	DevelMode       bool   `onion:"devel_mode"`
+	DevelMode    bool   `onion:"devel_mode"`
 	Verbose      bool   `onion:"verbose"`
 	DialTimeout  int    `onion:"dial_timeout"`
 	Domain       string `onion:"domain"`
