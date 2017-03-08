@@ -1,12 +1,11 @@
 package main
 
 import (
-	"config"
-	"notify"
-	"flag"
+	"contif/config"
 	"fmt"
 	"log"
 	"net"
+	"notify"
 	"strings"
 	"time"
 )
@@ -19,7 +18,6 @@ const (
 )
 
 func main() {
-	flag.Parse()
 	var isConnected bool = false
 	config.Initialize()
 	config.SetConfigParameter()
