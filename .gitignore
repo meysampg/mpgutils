@@ -10,6 +10,7 @@
 bin/
 pkg/
 log/
+.idea
 
 # Test binary, build with `go test -c`
 *.test
@@ -120,3 +121,4 @@ bh_unicode_properties.cache
 GitHub.sublime-settings
 
 # End of https://www.gitignore.io/api/go,sublimetext,linux,intellij
+
