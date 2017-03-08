@@ -66,7 +66,6 @@ func (n Notificator) Push(title string, text string, iconPath string, urgency st
 type osxNotificator struct {
 	AppName string
 }
-
 func (o osxNotificator) push(title string, text string, iconPath string) *exec.Cmd {
 
 	// Checks if terminal-notifier exists, and is accessible.
@@ -109,27 +108,30 @@ func (o osxNotificator) pushCritical(title string, text string, iconPath string)
 
 }
 
+
+
 type linuxNotificator struct{}
 
 func (l linuxNotificator) push(title string, text string, iconPath string) *exec.Cmd {
 	return exec.Command("notify-send", "-i", iconPath, title, text)
 }
-
 // Causes the notification to stick around until clicked.
 func (l linuxNotificator) pushCritical(title string, text string, iconPath string) *exec.Cmd {
 	return exec.Command("notify-send", "-i", iconPath, title, text, "-u", "critical")
 }
+
 
 type windowsNotificator struct{}
 
 func (w windowsNotificator) push(title string, text string, iconPath string) *exec.Cmd {
 	return exec.Command("growlnotify", "/i:", iconPath, "/t:", title, text)
 }
-
 // Causes the notification to stick around until clicked.
 func (w windowsNotificator) pushCritical(title string, text string, iconPath string) *exec.Cmd {
 	return exec.Command("notify-send", "-i", iconPath, title, text, "/s", "true", "/p", "2")
 }
+
+
 
 // Helper function for macOS
 func CheckTermNotif() bool {
