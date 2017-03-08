@@ -1,6 +1,7 @@
 package config
 
 import (
+	"assert"
 	"os"
 	"os/user"
 	"path/filepath"
@@ -9,10 +10,9 @@ import (
 
 	"encoding/json"
 
-	"contif/assert"
-
 	"github.com/Sirupsen/logrus"
 	"gopkg.in/fzerorubigd/onion.v2"
+	"gopkg.in/fzerorubigd/onion.v2/extraenv"
 )
 
 var (
@@ -56,7 +56,9 @@ func Initialize() {
 		}
 	}
 
+	o.AddLazyLayer(extraenv.NewExtraEnvLayer("GAD"))
 	o.GetStruct("", &Config)
+	// TODO {fzerorubigd}: Onion does not support slice in struct mapping
 
 	for i := range all {
 		all[i].Loaded()
@@ -79,4 +81,9 @@ func SetConfigParameter() {
 		logrus.SetLevel(logrus.WarnLevel)
 	}
 
+}
+
+// Register a config module
+func Register(i ...Initializer) {
+	all = append(all, i...)
 }
