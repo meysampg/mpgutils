@@ -6,6 +6,7 @@ import (
 	"gopkg.in/fzerorubigd/onion.v2"
 )
 
+
 var (
 	Verbose      = flag.Bool("v", false, "Verbose status of connection")
 	DialTimeout  = flag.Int("t", 10, "Timeout of sytem on dial host in seconds")
@@ -33,6 +34,7 @@ type AppConfig struct {
 
 func defaultLayer() onion.Layer {
 	d := onion.NewDefaultLayer()
+
 	err := d.SetDefault("devel_mode", true)
 	panicOnErr(err)
 	err = d.SetDefault("verbose", false)
