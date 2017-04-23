@@ -9,7 +9,6 @@ import (
 
 	"encoding/json"
 
-	"contif/assert"
 
 	"github.com/Sirupsen/logrus"
 	"gopkg.in/fzerorubigd/onion.v2"
@@ -38,7 +37,10 @@ func Initialize() {
 		logrus.Warn(err)
 	}
 
-	assert.Nil(o.AddLayer(defaultLayer()))
+
+	err = o.AddLayer(defaultLayer())
+	panicOnErr(err)
+
 	if err = o.AddLayer(onion.NewFileLayer("/etc/" + organization + "/" + appName + ".yaml")); err == nil {
 
 		logrus.Infof("loading config from %s", "/etc/"+organization+"/"+appName+".yaml")
